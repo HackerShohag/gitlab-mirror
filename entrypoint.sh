@@ -29,6 +29,12 @@ branch_uri="$(urlencode ${branch})"
 sh -c "git config --global credential.username $GITLAB_USERNAME"
 sh -c "git config --global core.askPass /cred-helper.sh"
 sh -c "git config --global credential.helper cache"
+
+sh -c "git config --global user.email \"${GITHUB_EMAIL:-}\""
+sh -c "git config --global user.name \"${GITHUB_NAME:-}\""
+
+sh -c "git rm -rf .github"
+sh -c "git commit --amend --no-edit"
 sh -c "git remote add mirror $*"
 sh -c "echo pushing to $branch branch at $(git remote get-url --push mirror)"
 if [ "${FORCE_PUSH:-}" = "true" ]

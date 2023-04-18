@@ -2,7 +2,11 @@
 
 A GitHub Action that mirrors all commits to GitLab, triggers GitLab CI, and returns the results back to GitHub. 
 
-This action uses active polling to determine whether the GitLab pipeline is finished. This means our GitHub Action will run for the same amount of time as it takes for GitLab CI to finish the pipeline. 
+This action uses active polling to determine whether the GitLab pipeline is finished. This means our GitHub Action will run for the same amount of time as it takes for GitLab CI to finish the pipeline.
+
+## Features
+
+This fork removes all of your github workflow files before pushing to GitLab. So, your GitLab repo won't contain any of your GitHub workflow files.
 
 ## Example workflow
 
@@ -30,6 +34,8 @@ jobs:
         GITLAB_PASSWORD: ${{ secrets.GITLAB_PASSWORD }} // Generate here: https://gitlab.com/profile/personal_access_tokens
         GITLAB_PROJECT_ID: "<GitLab project ID>" // https://gitlab.com/<namespace>/<repository>/edit
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} // https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+        GITHUB_NAME: "Your Name"
+        GITHUB_EMAIL: "Your Email"
 ```
 
 Be sure to define the `GITLAB_PASSWORD` secret in `https://github.com/<namespace>/<repository>/settings/secrets`  
